@@ -1,0 +1,314 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root,
+  [data-theme="espresso"] {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace;
+
+    /* Theme Dynamic Custom Properties: Warm Espresso */
+    --theme-canvas-bg: #0a0604;
+    --theme-surface-base: rgba(20, 13, 9, 0.78);
+    --theme-surface-elevated: rgba(28, 18, 12, 0.86);
+    --theme-surface-dock: rgba(24, 15, 10, 0.90);
+    --theme-surface-sidebar: linear-gradient(180deg, rgba(24, 15, 10, 0.95) 0%, rgba(18, 11, 7, 0.97) 60%, rgba(10, 6, 4, 0.99) 100%);
+    --theme-surface-assistant: linear-gradient(180deg, rgba(28, 18, 12, 0.82) 0%, rgba(20, 13, 9, 0.88) 60%, rgba(14, 9, 6, 0.94) 100%);
+    --theme-surface-user: linear-gradient(135deg, rgba(46, 28, 18, 0.92) 0%, rgba(32, 19, 12, 0.95) 100%);
+    --theme-surface-code: rgba(14, 9, 6, 0.96);
+    --theme-surface-popover: rgba(26, 17, 11, 0.96);
+
+    --theme-border-ambient: rgba(245, 220, 195, 0.12);
+    --theme-border-specular: rgba(255, 235, 215, 0.28);
+    --theme-border-focus: rgba(245, 158, 11, 0.60);
+
+    --theme-text-primary: #faf6f0;
+    --theme-text-secondary: rgba(250, 246, 240, 0.72);
+    --theme-text-muted: rgba(250, 246, 240, 0.44);
+    --theme-text-accent: #fbbf24;
+
+    --theme-accent-primary: #f59e0b;
+    --theme-accent-secondary: #fbbf24;
+    --theme-accent-glow: rgba(245, 158, 11, 0.28);
+    --theme-accent-soft-glow: rgba(245, 158, 11, 0.10);
+
+    --theme-btn-primary-bg: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --theme-btn-primary-text: #180a02;
+    --theme-btn-primary-hover: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+
+    --theme-glass-radial: rgba(255, 220, 180, 0.09);
+    --theme-glass-multiply: rgba(42, 26, 17, 0.80);
+    --theme-shadow-ambient: rgba(0, 0, 0, 0.85);
+  }
+
+  [data-theme="obsidian"] {
+    --theme-canvas-bg: #050506;
+    --theme-surface-base: rgba(14, 14, 18, 0.80);
+    --theme-surface-elevated: rgba(22, 22, 28, 0.86);
+    --theme-surface-dock: rgba(18, 18, 24, 0.92);
+    --theme-surface-sidebar: linear-gradient(180deg, rgba(16, 16, 22, 0.96) 0%, rgba(12, 12, 16, 0.98) 60%, rgba(6, 6, 8, 1) 100%);
+    --theme-surface-assistant: linear-gradient(180deg, rgba(22, 22, 28, 0.82) 0%, rgba(16, 16, 20, 0.88) 60%, rgba(10, 10, 14, 0.95) 100%);
+    --theme-surface-user: linear-gradient(135deg, rgba(38, 38, 48, 0.94) 0%, rgba(26, 26, 34, 0.96) 100%);
+    --theme-surface-code: rgba(10, 10, 13, 0.96);
+    --theme-surface-popover: rgba(24, 24, 30, 0.96);
+
+    --theme-border-ambient: rgba(255, 255, 255, 0.10);
+    --theme-border-specular: rgba(255, 255, 255, 0.32);
+    --theme-border-focus: rgba(226, 232, 240, 0.65);
+
+    --theme-text-primary: #f8fafc;
+    --theme-text-secondary: rgba(241, 245, 249, 0.74);
+    --theme-text-muted: rgba(203, 213, 225, 0.45);
+    --theme-text-accent: #e2e8f0;
+
+    --theme-accent-primary: #e2e8f0;
+    --theme-accent-secondary: #cbd5e1;
+    --theme-accent-glow: rgba(226, 232, 240, 0.22);
+    --theme-accent-soft-glow: rgba(226, 232, 240, 0.08);
+
+    --theme-btn-primary-bg: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+    --theme-btn-primary-text: #0a0a0d;
+    --theme-btn-primary-hover: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+
+    --theme-glass-radial: rgba(255, 255, 255, 0.07);
+    --theme-glass-multiply: rgba(18, 18, 24, 0.85);
+    --theme-shadow-ambient: rgba(0, 0, 0, 0.92);
+  }
+
+  [data-theme="amber"] {
+    --theme-canvas-bg: #0c0703;
+    --theme-surface-base: rgba(28, 15, 6, 0.80);
+    --theme-surface-elevated: rgba(38, 20, 8, 0.88);
+    --theme-surface-dock: rgba(32, 17, 7, 0.92);
+    --theme-surface-sidebar: linear-gradient(180deg, rgba(32, 17, 7, 0.96) 0%, rgba(22, 11, 4, 0.98) 60%, rgba(12, 6, 2, 1) 100%);
+    --theme-surface-assistant: linear-gradient(180deg, rgba(40, 21, 9, 0.84) 0%, rgba(28, 15, 6, 0.90) 60%, rgba(18, 9, 3, 0.95) 100%);
+    --theme-surface-user: linear-gradient(135deg, rgba(64, 34, 12, 0.94) 0%, rgba(44, 22, 7, 0.96) 100%);
+    --theme-surface-code: rgba(16, 8, 3, 0.96);
+    --theme-surface-popover: rgba(36, 19, 8, 0.96);
+
+    --theme-border-ambient: rgba(251, 191, 36, 0.16);
+    --theme-border-specular: rgba(253, 230, 138, 0.38);
+    --theme-border-focus: rgba(251, 191, 36, 0.70);
+
+    --theme-text-primary: #fffbeb;
+    --theme-text-secondary: rgba(254, 243, 199, 0.76);
+    --theme-text-muted: rgba(253, 230, 138, 0.46);
+    --theme-text-accent: #f59e0b;
+
+    --theme-accent-primary: #f59e0b;
+    --theme-accent-secondary: #fbbf24;
+    --theme-accent-glow: rgba(245, 158, 11, 0.38);
+    --theme-accent-soft-glow: rgba(245, 158, 11, 0.14);
+
+    --theme-btn-primary-bg: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    --theme-btn-primary-text: #180a02;
+    --theme-btn-primary-hover: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%);
+
+    --theme-glass-radial: rgba(251, 191, 36, 0.11);
+    --theme-glass-multiply: rgba(54, 26, 8, 0.82);
+    --theme-shadow-ambient: rgba(0, 0, 0, 0.90);
+  }
+
+  [data-theme="mocha"] {
+    --theme-canvas-bg: #0a0609;
+    --theme-surface-base: rgba(24, 14, 22, 0.80);
+    --theme-surface-elevated: rgba(34, 20, 30, 0.88);
+    --theme-surface-dock: rgba(30, 17, 26, 0.92);
+    --theme-surface-sidebar: linear-gradient(180deg, rgba(28, 16, 25, 0.96) 0%, rgba(20, 11, 18, 0.98) 60%, rgba(10, 5, 9, 1) 100%);
+    --theme-surface-assistant: linear-gradient(180deg, rgba(36, 21, 32, 0.84) 0%, rgba(26, 14, 23, 0.90) 60%, rgba(16, 8, 14, 0.95) 100%);
+    --theme-surface-user: linear-gradient(135deg, rgba(58, 29, 49, 0.94) 0%, rgba(40, 20, 34, 0.96) 100%);
+    --theme-surface-code: rgba(15, 8, 13, 0.96);
+    --theme-surface-popover: rgba(32, 18, 28, 0.96);
+
+    --theme-border-ambient: rgba(244, 114, 182, 0.15);
+    --theme-border-specular: rgba(253, 226, 243, 0.32);
+    --theme-border-focus: rgba(244, 114, 182, 0.65);
+
+    --theme-text-primary: #fdf2f8;
+    --theme-text-secondary: rgba(252, 231, 243, 0.74);
+    --theme-text-muted: rgba(244, 114, 182, 0.44);
+    --theme-text-accent: #f472b6;
+
+    --theme-accent-primary: #f472b6;
+    --theme-accent-secondary: #fb7185;
+    --theme-accent-glow: rgba(244, 114, 182, 0.30);
+    --theme-accent-soft-glow: rgba(244, 114, 182, 0.10);
+
+    --theme-btn-primary-bg: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+    --theme-btn-primary-text: #ffffff;
+    --theme-btn-primary-hover: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+
+    --theme-glass-radial: rgba(244, 114, 182, 0.09);
+    --theme-glass-multiply: rgba(48, 20, 38, 0.84);
+    --theme-shadow-ambient: rgba(0, 0, 0, 0.88);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--theme-canvas-bg);
+    color: var(--theme-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+}
+
+/* Custom subtle Apple-style glass scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-border-ambient);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-specular);
+}
+
+/* Apple Liquid Glass Layered Surface Utilities with 3D Depth & Dynamic Theme Tints */
+.liquid-glass-base {
+  position: relative;
+  background: 
+    radial-gradient(circle 800px at 50% -20%, var(--theme-glass-radial), transparent 70%),
+    var(--theme-surface-base);
+  background-blend-mode: overlay, normal;
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  border: 1px solid var(--theme-border-ambient);
+  box-shadow: 
+    0 24px 60px -15px var(--theme-shadow-ambient),
+    inset 0 1px 1.5px 0 var(--theme-border-specular),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.55);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.liquid-glass-base::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 700px at 50% 120%, var(--theme-glass-multiply), transparent 75%);
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  transition: background 0.35s ease;
+}
+
+.liquid-glass-elevated {
+  position: relative;
+  background: 
+    radial-gradient(circle 600px at 50% -10%, var(--theme-glass-radial), transparent 65%),
+    var(--theme-surface-elevated);
+  background-blend-mode: overlay, normal;
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border: 1px solid var(--theme-border-ambient);
+  box-shadow:
+    0 28px 70px -12px var(--theme-shadow-ambient),
+    inset 0 1.5px 1.5px 0 var(--theme-border-specular),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.65);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.liquid-glass-elevated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 500px at 50% 100%, var(--theme-glass-multiply), transparent 70%);
+  mix-blend-mode: multiply;
+  opacity: 0.90;
+  transition: background 0.35s ease;
+}
+
+.liquid-glass-dock {
+  background: var(--theme-surface-dock);
+  backdrop-filter: blur(56px) saturate(220%);
+  -webkit-backdrop-filter: blur(56px) saturate(220%);
+  border: 1px solid var(--theme-border-ambient);
+  box-shadow:
+    0 32px 90px -16px var(--theme-shadow-ambient),
+    inset 0 1px 2px 0 var(--theme-border-specular),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.6);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Specular Upper Bevel Highlight */
+.specular-bevel-top {
+  position: relative;
+}
+.specular-bevel-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--theme-border-specular) 25%,
+    rgba(255, 255, 255, 0.45) 50%,
+    var(--theme-border-specular) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+/* Glass Pill Button Material */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--theme-border-ambient);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0.5px var(--theme-border-specular);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: var(--theme-border-specular);
+  transform: translateY(-0.5px);
+}
+.glass-pill:active {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(0.5px) scale(0.98);
+}
+
+/* Subtle Realistic Optical Shimmer */
+@keyframes optical-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-optical-sweep {
+  animation: optical-sweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Safe Area Insets for Mobile Notches & Modern Edge-to-Edge Displays */
+.safe-area-top {
+  padding-top: max(0.875rem, env(safe-area-inset-top, 0px));
+}
+
+.safe-area-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* Physics-based smooth micro-interactions */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}

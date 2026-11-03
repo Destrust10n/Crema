@@ -1,0 +1,6 @@
+{
+  "name": "Crema",
+  "description": "Crema - AI Study-Buddy Workspace for quizzes, file/Drive summaries, photo question solving, study planner, exam tracking, flashcards, and streaming study chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

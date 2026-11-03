@@ -1,0 +1,169 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile data and application settings for Crema study buddy.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "photoURL": { "type": "string", "maxLength": 500 },
+        "studyGoals": { "type": "string", "maxLength": 500 },
+        "preferredTone": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "Study dialogue session metadata.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Individual message in study chat.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "sender": { "type": "string", "enum": ["user", "model", "system"] },
+        "text": { "type": "string", "maxLength": 50000 },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "sender", "text"]
+    },
+    "Quiz": {
+      "title": "Quiz",
+      "description": "AI-generated quiz with questions and scores.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "topic": { "type": "string", "maxLength": 200 },
+        "questions": { "type": "string" },
+        "score": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "topic"]
+    },
+    "Summary": {
+      "title": "Summary",
+      "description": "File or Drive document study summary.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "sourceName": { "type": "string", "maxLength": 255 },
+        "content": { "type": "string", "maxLength": 100000 },
+        "keyTakeaways": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "sourceName", "content"]
+    },
+    "Solution": {
+      "title": "Solution",
+      "description": "Photo question solver result with step-by-step breakdown.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "questionText": { "type": "string", "maxLength": 5000 },
+        "solutionSteps": { "type": "string" },
+        "finalAnswer": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "finalAnswer"]
+    },
+    "StudyPlan": {
+      "title": "StudyPlan",
+      "description": "Study planner schedule, weekly goals, and task blocks.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "targetExam": { "type": "string", "maxLength": 200 },
+        "daysRemaining": { "type": "number" },
+        "schedule": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "targetExam"]
+    },
+    "Exam": {
+      "title": "Exam",
+      "description": "Tracked exam item with syllabus and due date.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 50 },
+        "syllabus": { "type": "string", "maxLength": 5000 },
+        "source": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "date"]
+    },
+    "FlashcardDeck": {
+      "title": "FlashcardDeck",
+      "description": "Flashcard deck with front/back cards and mastery.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "cards": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Crema user profile and preferences"
+    },
+    "/users/{uid}/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/Chat" },
+      "description": "Crema study chat dialogues"
+    },
+    "/users/{uid}/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Crema chat dialogue messages"
+    },
+    "/users/{uid}/quizzes/{quizId}": {
+      "schema": { "$ref": "#/entities/Quiz" },
+      "description": "Crema quizzes and scores"
+    },
+    "/users/{uid}/summaries/{summaryId}": {
+      "schema": { "$ref": "#/entities/Summary" },
+      "description": "Crema summaries of documents"
+    },
+    "/users/{uid}/solutions/{solutionId}": {
+      "schema": { "$ref": "#/entities/Solution" },
+      "description": "Crema photo question solutions"
+    },
+    "/users/{uid}/plans/{planId}": {
+      "schema": { "$ref": "#/entities/StudyPlan" },
+      "description": "Crema study schedules and plans"
+    },
+    "/users/{uid}/exams/{examId}": {
+      "schema": { "$ref": "#/entities/Exam" },
+      "description": "Crema tracked exams"
+    },
+    "/users/{uid}/flashcards/{deckId}": {
+      "schema": { "$ref": "#/entities/FlashcardDeck" },
+      "description": "Crema flashcard decks"
+    }
+  }
+}
